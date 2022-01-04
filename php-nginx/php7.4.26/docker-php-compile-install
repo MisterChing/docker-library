@@ -5,7 +5,7 @@ PHP_VERSION="7.4.26"
 PHP_BASE_URL="https://www.php.net/distributions"
 PHP_DOWNLOAD_URL="$PHP_BASE_URL/php-$PHP_VERSION.tar.gz"
 PHP_TAR_FILENAME="php-$PHP_VERSION.tar.gz"
-#wget "$PHP_DOWNLOAD_URL"
+wget "$PHP_DOWNLOAD_URL"
 tar -zxvf $PHP_TAR_FILENAME
 cd "php-$PHP_VERSION"
 ./configure --prefix="$PHP_INSTALL_PATH"/php \
