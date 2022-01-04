@@ -5,7 +5,7 @@ ENV LANGUAGE=en_US.UTF-8
 
 RUN echo http://mirrors.aliyun.com/alpine/v3.15/main > /etc/apk/repositories \
   && echo http://mirrors.aliyun.com/alpine/v3.15/community >> /etc/apk/repositories
-RUN apk add --no-cache bash curl vim wget htop net-tools git rsync nmap python3
+RUN apk add --no-cache bash curl vim wget htop procps lsof net-tools git rsync nmap python3
 RUN apk add tzdata \
   && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
   && echo "Asia/Shanghai" > /etc/timezone \
