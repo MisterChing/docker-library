@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+NGINX_INSTALL_PATH="/usr/local/matrix"
+NGINX_VERSION="1.20.2"
+NGINX_BASE_URL="http://nginx.org/download"
+NGINX_DOWNLOAD_URL="$NGINX_BASE_URL/nginx-$NGINX_VERSION.tar.gz"
+NGINX_TAR_FILENAME="nginx-$NGINX_VERSION.tar.gz"
+wget "$NGINX_DOWNLOAD_URL"
+tar -zxvf $NGINX_TAR_FILENAME
+cd "nginx-$NGINX_VERSION"
+./configure --prefix="$NGINX_INSTALL_PATH"/nginx --sbin-path="$NGINX_INSTALL_PATH"/sbin --conf-path="$NGINX_INSTALL_PATH"/etc/nginx/nginx.conf
+make && make install
+cd -
+rm -rf "$NGINX_TAR_FILENAME" "nginx-$NGINX_VERSION"
+echo "install nginx done\n"

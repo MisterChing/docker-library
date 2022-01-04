@@ -1,0 +1,47 @@
+#!/bin/bash
+set -e
+PHP_INSTALL_PATH="/usr/local/matrix"
+PHP_VERSION="7.1.33"
+PHP_BASE_URL="https://www.php.net/distributions"
+PHP_DOWNLOAD_URL="$PHP_BASE_URL/php-$PHP_VERSION.tar.gz"
+PHP_TAR_FILENAME="php-$PHP_VERSION.tar.gz"
+wget "$PHP_DOWNLOAD_URL"
+tar -zxvf $PHP_TAR_FILENAME
+cd "php-$PHP_VERSION"
+./configure --prefix="$PHP_INSTALL_PATH"/php \
+    --bindir="$PHP_INSTALL_PATH"/bin \
+    --sbindir="$PHP_INSTALL_PATH"/sbin \
+    --sysconfdir="$PHP_INSTALL_PATH"/etc/php \
+    --with-config-file-path="$PHP_INSTALL_PATH"/etc/php \
+    --with-config-file-scan-dir="$PHP_INSTALL_PATH"/etc/php \
+    --enable-fpm \
+    --with-curl  \
+    --with-mhash \
+    --enable-mbstring \
+    --enable-pcntl \
+    --with-gd \
+    --enable-phpdbg \
+    --with-libedit \
+    --enable-mysqlnd \
+    --enable-ftp \
+    --with-pdo-mysql \
+    --enable-sockets \
+    --with-openssl \
+    --with-zlib \
+    --enable-zip \
+    --with-kerberos \
+    --enable-sysvshm \
+    --enable-sysvsem \
+    --enable-sysvmsg \
+    --enable-shmop \
+    --enable-exif \
+    --enable-bcmath \
+    --with-snmp \
+    --with-webp-dir \
+    --with-jpeg-dir \
+    --with-gettext
+
+make && make install
+cd -
+rm -rf "$PHP_TAR_FILENAME" "php-$PHP_VERSION"
+echo "install php done\n"
