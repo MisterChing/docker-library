@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+cd /usr/src/php/ext/
+package=$1
+echo "download http://pecl.php.net/get/$package.tgz"
+curl --retry 5 http://pecl.php.net/get/$package.tgz > $package.tgz
+tar zxvf $package.tgz
+docker-php-ext-install -j "$(nproc)" $package
